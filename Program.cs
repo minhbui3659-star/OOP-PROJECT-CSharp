@@ -8,9 +8,7 @@ using System.Collections.Generic;
 
 namespace ProjectManagement
 {
-    // ==========================================
-    // 1. LỚP EMPLOYEE (Lớp cha)
-    // ==========================================
+    // Lớp Eployee
     public class Employee
     {
         private string _id = "UNKNOWN";
@@ -34,7 +32,7 @@ namespace ProjectManagement
             set { if (value >= 0) _baseSalary = value; }
         }
 
-        // Nạp chồng Constructor (Constructor Overloading)
+        // Nạp chồng Constructor 
         public Employee() { }
 
         public Employee(string id, string fullName)
@@ -48,7 +46,7 @@ namespace ProjectManagement
             BaseSalary = baseSalary;
         }
 
-        // Nạp chồng phương thức (Method Overloading)
+        // Nạp chồng phương thức 
         public void IncreaseSalary(double amount)
         {
             if (amount > 0) BaseSalary += amount;
@@ -62,8 +60,6 @@ namespace ProjectManagement
                 else BaseSalary += value;
             }
         }
-
-        // Đa hình (Polymorphism)
         public virtual double CalculateMonthlyCost() => BaseSalary;
 
         public virtual void DisplayInfo()
@@ -71,16 +67,12 @@ namespace ProjectManagement
             Console.WriteLine($"[Nhân viên] Mã: {Id,-5} | Tên: {FullName,-15} | Lương CB: {BaseSalary}");
         }
 
-        // Destructor để quan sát vòng đời
         ~Employee()
         {
             Console.WriteLine($"[Hủy] Đã giải phóng bộ nhớ Employee: {Id}");
         }
     }
-
-    // ==========================================
-    // 2. LỚP SOFTWARE ENGINEER (Kế thừa Employee)
-    // ==========================================
+    // Lớp SoftwareEngineer
     public class SoftwareEngineer : Employee
     {
         private string _primaryLanguage = "Unknown";
@@ -123,9 +115,7 @@ namespace ProjectManagement
         }
     }
 
-    // ==========================================
-    // 3. LỚP PROJECT TEAM (Quan hệ Kết tập - Aggregation)
-    // ==========================================
+    // Lớp Projectteam
     public class ProjectTeam
     {
         public string ProjectCode { get; set; }
@@ -217,16 +207,14 @@ namespace ProjectManagement
             Console.WriteLine("--------------------------------------");
         }
 
-        // Destructor: Không hủy các Employee (Thể hiện quan hệ kết tập)
+        // Destructor: Không hủy các Employee 
         ~ProjectTeam()
         {
             Console.WriteLine($"[Hủy] Hủy ProjectTeam {ProjectCode} (Các Employee vẫn tồn tại độc lập).");
         }
     }
 
-    // ==========================================
-    // 4. CHƯƠNG TRÌNH KIỂM THỬ (MENU)
-    // ==========================================
+    // Kiểm thử
     class Program
     {
         static void Main(string[] args)
@@ -240,7 +228,7 @@ namespace ProjectManagement
 
             while (true)
             {
-                Console.WriteLine("\n========== KỊCH BẢN KIỂM THỬ ==========");
+                Console.WriteLine("\nKỊCH BẢN KIỂM THỬ ");
                 Console.WriteLine("1. Tạo 2 Employee (2 Constructor khác nhau)");
                 Console.WriteLine("2. Tạo 2 Software Engineer (2 Constructor khác nhau)");
                 Console.WriteLine("3. Tăng lương cố định (Employee 1)");
